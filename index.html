@@ -1,378 +1,663 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tomasz Kłos – Senior Sitecore Developer</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tomasz Kłos – Senior Sitecore Developer</title>
 
-  :root {
-    --bg: transparent;
-    --surface: rgba(255,255,255,0.03);
-    --border: #2a2a2a;
-    --accent: #c8f04a;
-    --accent-dim: rgba(200,240,74,0.12);
-    --text: #e8e8e8;
-    --muted: #888;
-    --white: #f5f5f5;
-  }
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap');
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #050816;
+      --surface: rgba(15, 23, 42, 0.72);
+      --surface-strong: rgba(15, 23, 42, 0.92);
+      --border: rgba(59, 130, 246, 0.16);
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --accent-glow: rgba(59, 130, 246, 0.35);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --white: #ffffff;
+    }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.65;
-  }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 48px;
-    background: rgba(13,13,13,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; color: var(--accent);
-    background: var(--accent-dim);
-    border: 1px solid var(--accent);
-    padding: 4px 10px; border-radius: 20px;
-    letter-spacing: .05em;
-  }
-  nav ul { list-style: none; display: flex; gap: 32px; }
-  nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
-  nav a:hover { color: var(--white); }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 120px 48px 80px;
-    position: relative; overflow: hidden;
-  }
-  #hero::before {
-    content: '';
-    position: absolute; top: -200px; right: -200px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(200,240,74,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px; color: var(--accent); letter-spacing: .15em;
-    text-transform: uppercase; margin-bottom: 32px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .hero-label::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(48px, 7vw, 96px);
-    line-height: 1.05; font-weight: 400;
-    color: var(--white); margin-bottom: 8px;
-  }
-  h1 em { color: var(--accent); font-style: italic; }
-  .hero-sub {
-    font-size: clamp(14px, 2vw, 18px); color: var(--muted);
-    max-width: 580px; margin: 24px 0 48px;
-    line-height: 1.7;
-  }
-  .btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--accent); color: #0d0d0d;
-    font-weight: 600; font-size: 14px;
-    padding: 14px 28px; border-radius: 4px;
-    text-decoration: none; transition: opacity .2s;
-  }
-  .btn-primary:hover { opacity: .85; }
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 8px;
-    border: 1px solid var(--border); color: var(--muted);
-    font-size: 14px; padding: 14px 28px; border-radius: 4px;
-    text-decoration: none; transition: border-color .2s, color .2s;
-  }
-  .btn-ghost:hover { border-color: var(--text); color: var(--white); }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+      background:
+        linear-gradient(rgba(5, 8, 22, 0.88), rgba(5, 8, 22, 0.94)),
+        url('background.png') center center / cover no-repeat fixed;
+      min-height: 100vh;
+    }
 
-  /* ── SECTIONS ── */
-  section { padding: 100px 48px; border-top: 1px solid var(--border); }
-  .section-number {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; color: var(--accent); letter-spacing: .15em;
-    margin-bottom: 16px; opacity: .7;
-  }
-  h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(32px, 4vw, 52px);
-    font-weight: 400; color: var(--white);
-    margin-bottom: 40px; line-height: 1.1;
-  }
-  h2 em { color: var(--accent); font-style: italic; }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 80% 15%, rgba(59,130,246,0.24), transparent 32%),
+        radial-gradient(circle at 20% 80%, rgba(37,99,235,0.18), transparent 34%);
+      z-index: -1;
+    }
 
-  /* ── ABOUT ── */
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-    align-items: start; max-width: 1000px;
-  }
-  .about-text p { color: var(--muted); font-size: 16px; margin-bottom: 16px; }
-  .about-text strong { color: var(--white); }
-  .about-meta { display: flex; flex-direction: column; gap: 24px; }
-  .meta-item { display: flex; flex-direction: column; gap: 4px; }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; }
-  .meta-value { color: var(--text); font-size: 15px; }
-  .meta-value a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); transition: border-color .2s; }
-  .meta-value a:hover { border-color: var(--accent); }
+    a {
+      color: inherit;
+    }
 
-  /* ── SKILLS ── */
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2px; }
-  .skill-card {
-    background: var(--surface); padding: 32px;
-    transition: background .2s;
-  }
-  .skill-card:hover { background: #1e1e1e; }
-  .skill-icon { font-size: 22px; margin-bottom: 16px; }
-  .skill-title { font-weight: 600; color: var(--white); font-size: 14px; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 16px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px; color: var(--muted);
-    border: 1px solid var(--border); padding: 4px 10px; border-radius: 3px;
-    transition: color .2s, border-color .2s;
-  }
-  .skill-card:hover .tag { color: var(--text); border-color: #444; }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 56px;
+      background: rgba(5, 8, 22, 0.58);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(59, 130, 246, 0.14);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
+    }
 
-  /* ── EXPERIENCE ── */
-  .exp-body { max-width: 720px; }
-  .exp-body p { color: var(--muted); font-size: 16px; margin-bottom: 20px; line-height: 1.8; }
-  .exp-body p:last-of-type { font-style: italic; color: var(--text); }
-  .exp-footer {
-    margin-top: 40px; display: flex; gap: 48px;
-    padding-top: 40px; border-top: 1px solid var(--border);
-  }
-  .exp-meta .meta-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
-  .exp-meta .meta-value a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); transition: border-color .2s; }
-  .exp-meta .meta-value a:hover { border-color: var(--accent); }
+    .nav-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent-light);
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.35);
+      padding: 6px 12px;
+      border-radius: 999px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
 
-  /* ── CONTACT ── */
-  .contact-wrap { max-width: 640px; }
-  .contact-lead { font-size: clamp(18px, 2.5vw, 24px); color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
-  .contact-lead em { color: var(--white); font-style: normal; }
-  .contact-sub { color: var(--muted); font-size: 15px; margin-bottom: 48px; line-height: 1.7; }
-  .contact-links { display: flex; gap: 16px; flex-wrap: wrap; }
-  .clink {
-    display: flex; flex-direction: column; gap: 4px;
-    border: 1px solid var(--border); padding: 20px 28px; border-radius: 4px;
-    text-decoration: none; transition: border-color .2s, background .2s;
-    min-width: 200px;
-  }
-  .clink:hover { border-color: var(--accent); background: var(--accent-dim); }
-  .clink-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: .1em; }
-  .clink-value { color: var(--white); font-size: 14px; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
 
-  /* ── FOOTER ── */
-  footer {
-    padding: 32px 48px;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center;
-    color: var(--muted); font-size: 13px;
-  }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color .2s ease;
+    }
 
-  /* ── GUIDE PANEL ── */
-  #guide {
-    background: #0a0f08;
-    border-top: 2px solid var(--accent);
-    padding: 80px 48px;
-  }
-  #guide h2 { margin-bottom: 12px; }
-  .guide-intro { color: var(--muted); max-width: 700px; margin-bottom: 56px; font-size: 15px; line-height: 1.8; }
-  .guide-steps { display: flex; flex-direction: column; gap: 0; }
-  .step {
-    display: grid; grid-template-columns: 80px 1fr;
-    gap: 32px; padding: 36px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .step:last-child { border-bottom: none; }
-  .step-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 48px; color: var(--accent); opacity: .25;
-    line-height: 1; padding-top: 4px;
-  }
-  .step-content h3 { color: var(--white); font-size: 17px; font-weight: 600; margin-bottom: 12px; }
-  .step-content p { color: var(--muted); font-size: 14px; line-height: 1.8; margin-bottom: 10px; }
-  .step-content ul { padding-left: 20px; color: var(--muted); font-size: 14px; line-height: 2; }
-  .step-content ul li { margin-bottom: 4px; }
-  .step-content strong { color: var(--text); }
-  .copy-box {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px; background: var(--surface);
-    border: 1px solid var(--border); border-left: 3px solid var(--accent);
-    padding: 16px 20px; margin-top: 14px; border-radius: 2px;
-    color: var(--accent); line-height: 1.8; white-space: pre-wrap;
-  }
-  .tip {
-    display: inline-flex; align-items: flex-start; gap: 10px;
-    background: rgba(200,240,74,0.06); border: 1px solid rgba(200,240,74,0.2);
-    padding: 12px 16px; border-radius: 4px; margin-top: 12px;
-    font-size: 13px; color: var(--text);
-  }
-  .tip::before { content: '💡'; flex-shrink: 0; }
+    nav a:hover {
+      color: var(--white);
+    }
 
-  @media (max-width: 768px) {
-    nav { padding: 16px 20px; }
-    nav ul { display: none; }
-    section, #hero, #guide { padding-left: 20px; padding-right: 20px; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .step { grid-template-columns: 1fr; gap: 8px; }
-    .step-num { font-size: 28px; }
-    footer { flex-direction: column; gap: 8px; text-align: center; }
-  }
-</style>
+    section {
+      position: relative;
+      padding: 140px 80px;
+      border-top: 1px solid rgba(59, 130, 246, 0.08);
+      animation: fadeIn 1s ease both;
+    }
+
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 170px 80px 120px;
+      overflow: hidden;
+      border-top: 0;
+    }
+
+    #hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+      mask-image: linear-gradient(to bottom, black 45%, transparent 100%);
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 1180px;
+    }
+
+    .hero-label,
+    .section-number,
+    .meta-label,
+    .clink-label {
+      font-family: 'DM Mono', monospace;
+      color: var(--accent-light);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .hero-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .hero-label::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: var(--accent-light);
+      box-shadow: 0 0 18px var(--accent-glow);
+    }
+
+    h1 {
+      font-size: clamp(64px, 9vw, 132px);
+      line-height: .95;
+      letter-spacing: -0.06em;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 28px;
+      max-width: 940px;
+    }
+
+    h1 span {
+      color: var(--accent);
+      text-shadow:
+        0 0 12px rgba(59,130,246,0.7),
+        0 0 32px rgba(59,130,246,0.45);
+    }
+
+    .hero-sub {
+      font-size: clamp(17px, 2vw, 22px);
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 46px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 34px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: white;
+      box-shadow: 0 0 25px rgba(59,130,246,0.35);
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(59,130,246,0.18);
+      background: rgba(15,23,42,0.48);
+      color: var(--text);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-primary:hover,
+    .btn-ghost:hover {
+      transform: translateY(-3px);
+      border-color: rgba(96,165,250,0.5);
+      box-shadow: 0 0 30px rgba(59,130,246,0.22);
+    }
+
+    h2 {
+      font-size: clamp(36px, 5vw, 72px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: var(--white);
+      margin: 18px 0 48px;
+    }
+
+    h2 span {
+      color: var(--accent-light);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 72px;
+      max-width: 1120px;
+    }
+
+    .about-text {
+      background: rgba(15,23,42,0.50);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 44px;
+      backdrop-filter: blur(16px);
+    }
+
+    .about-text p,
+    .exp-body p,
+    .contact-sub {
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 18px;
+    }
+
+    .about-text strong,
+    .contact-lead em {
+      color: var(--white);
+      font-style: normal;
+    }
+
+    .about-meta {
+      display: grid;
+      gap: 18px;
+    }
+
+    .meta-item,
+    .exp-meta,
+    .clink {
+      background: rgba(15,23,42,0.65);
+      border: 1px solid rgba(59,130,246,0.12);
+      border-radius: 22px;
+      padding: 24px;
+      backdrop-filter: blur(14px);
+    }
+
+    .meta-value {
+      display: block;
+      color: var(--text);
+      margin-top: 8px;
+      font-size: 15px;
+    }
+
+    .meta-value a {
+      text-decoration: none;
+      border-bottom: 1px solid rgba(96,165,250,0.35);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .skill-card {
+      background: rgba(15,23,42,0.72);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(59,130,246,0.12);
+      padding: 40px;
+      border-radius: 24px;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      min-height: 230px;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(96,165,250,0.42);
+      box-shadow: 0 0 30px rgba(59,130,246,0.18);
+    }
+
+    .skill-icon {
+      font-size: 28px;
+      margin-bottom: 22px;
+    }
+
+    .skill-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--white);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: #cbd5e1;
+      border: 1px solid rgba(96,165,250,0.18);
+      background: rgba(59,130,246,0.08);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .exp-body {
+      max-width: 830px;
+      background: rgba(15,23,42,0.52);
+      border: 1px solid rgba(59,130,246,0.12);
+      border-radius: 28px;
+      padding: 44px;
+      backdrop-filter: blur(16px);
+    }
+
+    .exp-footer {
+      max-width: 830px;
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .contact-wrap {
+      max-width: 760px;
+    }
+
+    .contact-lead {
+      font-size: clamp(22px, 3vw, 36px);
+      line-height: 1.25;
+      color: var(--muted);
+      margin-bottom: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .clink {
+      min-width: 260px;
+      text-decoration: none;
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    }
+
+    .clink:hover {
+      transform: translateY(-5px);
+      border-color: rgba(96,165,250,0.45);
+      box-shadow: 0 0 30px rgba(59,130,246,0.18);
+    }
+
+    .clink-value {
+      display: block;
+      margin-top: 8px;
+      color: var(--white);
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 32px 80px;
+      border-top: 1px solid rgba(59,130,246,0.10);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      background: rgba(5,8,22,0.72);
+      backdrop-filter: blur(12px);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 860px) {
+      nav {
+        padding: 16px 20px;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      section,
+      #hero {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      #hero {
+        padding-top: 150px;
+      }
+
+      h1 {
+        font-size: clamp(54px, 16vw, 86px);
+      }
+
+      .about-grid,
+      .exp-footer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .about-text,
+      .exp-body,
+      .skill-card {
+        padding: 28px;
+      }
+
+      footer {
+        padding: 28px 22px;
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <nav>
+    <span class="nav-badge">Available for contract · Remote</span>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<!-- NAV -->
-<nav>
-  <span class="nav-badge">Available for contract · Remote</span>
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <section id="hero">
+    <div class="content">
+      <div class="hero-label">Senior Sitecore Developer</div>
+      <h1>Tomasz Kłos<span>.</span></h1>
+      <p class="hero-sub">
+        Senior Sitecore Developer specializing in scalable enterprise platforms,
+        modern digital experiences and high-performance backend solutions.
+      </p>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-label">Senior sitecore Developer</div>
-  <h1>Tomasz<br>Kłos <em>·</em></h1>
-  <p class="hero-sub">Experienced Developer with a demonstrated history of working in the information technology and services industry. Strong engineering professional skilled in WinForms, Databases, Windows Communication Foundation (WCF), .NET Framework, and C#.</p>
-  <div class="btn-row">
-    <a href="#contact" class="btn-primary">↗ Contact</a>
-    <a href="#skills" class="btn-ghost">Skills</a>
-    <a href="#experience" class="btn-ghost">Experience</a>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-number">01</div>
-  <h2>About me</h2>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>I'm a <strong>Senior Sitecore Developer</strong> with over a decade of hands-on experience in fintech, biotechnology, and e-commerce sectors.</p>
-      <p>I'm currently <strong>open to contract engagements</strong>.</p>
-    </div>
-    <div class="about-meta">
-      <div class="meta-item">
-        <span class="meta-label">📍 Location</span>
-        <span class="meta-value">Poland · Remote</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">🔗 LinkedIn</span>
-        <span class="meta-value"><a href="https://www.linkedin.com/in/tomasz-k%C5%82os-2580626/" target="_blank">linkedin.com</a></span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">✉️ Email</span>
-        <span class="meta-value"><a href="mailto:contact@hojko.pl">tom.klos@gmail.com</a></span>
+      <div class="btn-row">
+        <a href="#contact" class="btn-primary">↗ Contact</a>
+        <a href="#skills" class="btn-ghost">View skills</a>
+        <a href="#experience" class="btn-ghost">Experience</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-number">02</div>
-  <h2>Technical skills</h2>
-  <div class="skills-grid">
-    <div class="skill-card">
-      <div class="skill-icon">⚙️</div>
-      <div class="skill-title">.NET</div>
-      <div class="tags">
-        <span class="tag">C#</span>
-        <span class="tag">ASP.NET Core</span>
-        <span class="tag">.NET 4-10</span>
+  <section id="about">
+    <div class="content">
+      <div class="section-number">01 / ABOUT</div>
+      <h2>Enterprise developer with a <span>technical mindset</span>.</h2>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a <strong>Senior Sitecore Developer</strong> with experience in
+            enterprise digital platforms, backend systems and scalable web applications.
+          </p>
+          <p>
+            I focus on clean architecture, maintainable code and building systems
+            that deliver real business value.
+          </p>
+          <p>
+            My work combines practical engineering, performance awareness and strong
+            problem-solving skills across complex technology environments.
+          </p>
+        </div>
+
+        <div class="about-meta">
+          <div class="meta-item">
+            <span class="meta-label">Location</span>
+            <span class="meta-value">Poland · Remote</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">LinkedIn</span>
+            <span class="meta-value">
+              <a href="https://www.linkedin.com/in/tomasz-k%C5%82os-2580626/" target="_blank">
+                linkedin.com/in/tomasz-kłos
+              </a>
+            </span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Email</span>
+            <span class="meta-value">
+              <a href="mailto:tomasz.klos@gmail.com">tomasz.klos@gmail.com</a>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">☁️</div>
-      <div class="skill-title">Cloud – Azure</div>
-      <div class="tags">
-        <span class="tag">AI Search</span>
-        <span class="tag">Functions</span>
-        <span class="tag">Logic Apps</span>
-        <span class="tag">App Insights</span>
-        <span class="tag">Azure DevOps</span>
+  </section>
+
+  <section id="skills">
+    <div class="content">
+      <div class="section-number">02 / STACK</div>
+      <h2>Technical <span>skills</span>.</h2>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">⚙️</div>
+          <div class="skill-title">.NET Development</div>
+          <div class="tags">
+            <span class="tag">C#</span>
+            <span class="tag">ASP.NET Core</span>
+            <span class="tag">.NET Framework</span>
+            <span class="tag">WebAPI</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🧩</div>
+          <div class="skill-title">Sitecore CMS</div>
+          <div class="tags">
+            <span class="tag">Sitecore</span>
+            <span class="tag">Enterprise CMS</span>
+            <span class="tag">Digital Platforms</span>
+            <span class="tag">Content Architecture</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">☁️</div>
+          <div class="skill-title">Cloud & DevOps</div>
+          <div class="tags">
+            <span class="tag">Azure</span>
+            <span class="tag">Azure DevOps</span>
+            <span class="tag">CI/CD</span>
+            <span class="tag">App Insights</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🔗</div>
+          <div class="skill-title">Architecture</div>
+          <div class="tags">
+            <span class="tag">REST APIs</span>
+            <span class="tag">Microservices</span>
+            <span class="tag">T-SQL</span>
+            <span class="tag">Clean Code</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">🗄️</div>
-      <div class="skill-title">Web Stack</div>
-      <div class="tags">
-        <span class="tag">TypeScript</span>
-        <span class="tag">REST</span>
-        <span class="tag">ASP.NET WebAPI</span>
+  </section>
+
+  <section id="experience">
+    <div class="content">
+      <div class="section-number">03 / EXPERIENCE</div>
+      <h2>Scalable systems. <span>Reliable delivery.</span></h2>
+
+      <div class="exp-body">
+        <p>
+          Experienced Developer with a demonstrated history of working in the
+          information technology and services industry.
+        </p>
+        <p>
+          Strong engineering professional skilled in backend development, databases,
+          web applications, .NET technologies and enterprise CMS solutions.
+        </p>
+        <p>
+          Passionate about clean architecture, maintainable code and building systems
+          that support long-term business growth.
+        </p>
+      </div>
+
+      <div class="exp-footer">
+        <div class="exp-meta">
+          <span class="meta-label">Core stack</span>
+          <span class="meta-value">Sitecore · C# · .NET · APIs</span>
+        </div>
+
+        <div class="exp-meta">
+          <span class="meta-label">Focus</span>
+          <span class="meta-value">Enterprise platforms · backend systems</span>
+        </div>
       </div>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">🔧</div>
-      <div class="skill-title">Other</div>
-      <div class="tags">
-        <span class="tag">Agile / Scrum</span>
-        <span class="tag">OOD</span>
-        <span class="tag">Microservices</span>
-        <span class="tag">T-SQL</span>
-        <span class="tag">Testing</span>
-        <span class="tag">Git</span>
-        <span class="tag">AI</span>
+  </section>
+
+  <section id="contact">
+    <div class="content contact-wrap">
+      <div class="section-number">04 / CONTACT</div>
+      <h2>Let's build something <span>scalable</span>.</h2>
+
+      <p class="contact-lead">
+        Have a project that needs a <em>seasoned Sitecore and .NET expert</em>?
+      </p>
+
+      <p class="contact-sub">
+        Open to collaboration, technical consulting and contract engagements related to
+        enterprise platforms, backend systems and Sitecore development.
+      </p>
+
+      <div class="contact-links">
+        <a href="mailto:tomasz.klos@gmail.com" class="clink">
+          <span class="clink-label">Email</span>
+          <span class="clink-value">tomasz.klos@gmail.com</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/tomasz-k%C5%82os-2580626/" target="_blank" class="clink">
+          <span class="clink-label">LinkedIn</span>
+          <span class="clink-value">linkedin.com/in/tomasz-kłos</span>
+        </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-number">03</div>
-  <h2>Experience</h2>
-  <div class="exp-body">
-    <p>Senior Sitecore Developer specializing in scalable enterprise platforms, modern digital experiences and high-performance backend solutions. Passionate about clean architecture, maintainable code and building systems that deliver real business value.</p>
-  </div>
-  <div class="exp-footer">
-    <div class="exp-meta">
-      <div class="meta-label">⚙️ .NET</div>
-      <div class="meta-value">C# · ASP.NET</div>
-    </div>
-    <div class="exp-meta">
-      <div class="meta-label">🔗 LinkedIn</div>
-      <div class="meta-value"><a href="https://www.linkedin.com/in/tomasz-k%C5%82os-2580626/" target="_blank">https://www.linkedin.com/in/tomasz-klos</a></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-number">04</div>
-  <h2>Let's work together</h2>
-  <div class="contact-wrap">
-    <p class="contact-lead">Have a project that needs a <em>sitecore expert</em>?</p>
-    <p class="contact-sub">I'm currently available for contract engagements — greenfield builds, legacy modernisation, long or short term. The best way to reach me is by email or LinkedIn.</p>
-    <div class="contact-links">
-      <a href="mailto:tomasz.klos@gmail.com" class="clink">
-        <span class="clink-label">✉️ Email me</span>
-        <span class="clink-value">tom.klos@gmail.com/span>
-      </a>
-      <a href="https://www.linkedin.com/in/tomasz-k%C5%82os-2580626/" target="_blank" class="clink">
-        <span class="clink-label">🔗 LinkedIn</span>
-        <span class="clink-value">linkedin.com/in/tomasz-k%C5%82os-2580626</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <span>Tomasz Kłos · Senior Sitecore Developer</span>
-  <span>© 2026</span>
-</footer>
+  <footer>
+    <span>Tomasz Kłos · Senior Sitecore Developer</span>
+    <span>© 2026</span>
+  </footer>
+</body>
+</html>
