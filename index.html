@@ -3,22 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tomasz Kłos – Senior Sitecore Developer portfolio. Sitecore, .NET, XM Cloud, enterprise CMS and cloud migrations." />
   <title>Tomasz Kłos – Senior Sitecore Developer</title>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
     :root {
       --bg: #050816;
       --surface: rgba(15, 23, 42, 0.72);
       --surface-strong: rgba(15, 23, 42, 0.92);
-      --border: rgba(59, 130, 246, 0.16);
+      --border: rgba(59, 130, 246, 0.18);
       --accent: #3b82f6;
       --accent-light: #60a5fa;
+      --accent-cyan: #38bdf8;
       --accent-glow: rgba(59, 130, 246, 0.35);
       --text: #f8fafc;
       --muted: #94a3b8;
+      --soft: #cbd5e1;
       --white: #ffffff;
+      --x: 50vw;
+      --y: 50vh;
     }
 
     * {
@@ -36,9 +41,10 @@
       color: var(--text);
       line-height: 1.65;
       background:
-        linear-gradient(rgba(5, 8, 22, 0.88), rgba(5, 8, 22, 0.94)),
-        url('background.png') center center / cover no-repeat fixed;
+        linear-gradient(rgba(5, 8, 22, 0.90), rgba(5, 8, 22, 0.96)),
+        url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2200&auto=format&fit=crop') center center / cover no-repeat fixed;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     body::before {
@@ -49,11 +55,24 @@
       background:
         radial-gradient(circle at 80% 15%, rgba(59,130,246,0.24), transparent 32%),
         radial-gradient(circle at 20% 80%, rgba(37,99,235,0.18), transparent 34%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(620px circle at var(--x) var(--y), rgba(59,130,246,0.13), transparent 42%);
       z-index: -1;
     }
 
     a {
       color: inherit;
+    }
+
+    p {
+      color: var(--muted);
     }
 
     nav {
@@ -66,7 +85,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 22px 56px;
-      background: rgba(5, 8, 22, 0.58);
+      background: rgba(5, 8, 22, 0.62);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(59, 130, 246, 0.14);
       box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
@@ -82,6 +101,7 @@
       border-radius: 999px;
       letter-spacing: .06em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     nav ul {
@@ -95,18 +115,18 @@
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
-      transition: color .2s ease;
+      transition: color .2s ease, text-shadow .2s ease;
     }
 
     nav a:hover {
       color: var(--white);
+      text-shadow: 0 0 16px rgba(96,165,250,.55);
     }
 
     section {
       position: relative;
       padding: 140px 80px;
       border-top: 1px solid rgba(59, 130, 246, 0.08);
-      animation: fadeIn 1s ease both;
     }
 
     #hero {
@@ -124,8 +144,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+        linear-gradient(rgba(59,130,246,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.045) 1px, transparent 1px);
       background-size: 80px 80px;
       pointer-events: none;
       mask-image: linear-gradient(to bottom, black 45%, transparent 100%);
@@ -135,6 +155,7 @@
       position: relative;
       z-index: 2;
       max-width: 1180px;
+      margin: 0 auto;
     }
 
     .hero-label,
@@ -166,14 +187,18 @@
     h1 {
       font-size: clamp(64px, 9vw, 132px);
       line-height: .95;
-      letter-spacing: -0.06em;
-      font-weight: 700;
+      letter-spacing: -0.065em;
+      font-weight: 800;
       color: var(--white);
       margin-bottom: 28px;
-      max-width: 940px;
+      max-width: 980px;
+      text-shadow:
+        0 0 18px rgba(59,130,246,0.35),
+        0 0 42px rgba(59,130,246,0.18);
     }
 
     h1 span {
+      display: block;
       color: var(--accent);
       text-shadow:
         0 0 12px rgba(59,130,246,0.7),
@@ -182,8 +207,8 @@
 
     .hero-sub {
       font-size: clamp(17px, 2vw, 22px);
-      color: var(--muted);
-      max-width: 720px;
+      color: var(--soft);
+      max-width: 780px;
       margin-bottom: 46px;
     }
 
@@ -202,19 +227,19 @@
       border-radius: 14px;
       text-decoration: none;
       font-size: 14px;
-      font-weight: 600;
-      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      font-weight: 700;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      background: linear-gradient(135deg, #2563eb, #3b82f6, #38bdf8);
       color: white;
-      box-shadow: 0 0 25px rgba(59,130,246,0.35);
+      box-shadow: 0 0 28px rgba(59,130,246,0.38);
     }
 
     .btn-ghost {
-      border: 1px solid rgba(59,130,246,0.18);
-      background: rgba(15,23,42,0.48);
+      border: 1px solid rgba(59,130,246,0.22);
+      background: rgba(15,23,42,0.54);
       color: var(--text);
       backdrop-filter: blur(10px);
     }
@@ -222,14 +247,14 @@
     .btn-primary:hover,
     .btn-ghost:hover {
       transform: translateY(-3px);
-      border-color: rgba(96,165,250,0.5);
-      box-shadow: 0 0 30px rgba(59,130,246,0.22);
+      border-color: rgba(96,165,250,0.55);
+      box-shadow: 0 0 34px rgba(59,130,246,0.24);
     }
 
     h2 {
       font-size: clamp(36px, 5vw, 72px);
       line-height: 1;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.055em;
       color: var(--white);
       margin: 18px 0 48px;
     }
@@ -245,16 +270,20 @@
       max-width: 1120px;
     }
 
-    .about-text {
-      background: rgba(15,23,42,0.50);
+    .about-text,
+    .exp-body,
+    .project-card {
+      background: rgba(15,23,42,0.54);
       border: 1px solid var(--border);
       border-radius: 28px;
       padding: 44px;
       backdrop-filter: blur(16px);
+      box-shadow: 0 24px 90px rgba(0,0,0,.22);
     }
 
     .about-text p,
     .exp-body p,
+    .project-card p,
     .contact-sub {
       color: var(--muted);
       font-size: 17px;
@@ -275,11 +304,12 @@
     .meta-item,
     .exp-meta,
     .clink {
-      background: rgba(15,23,42,0.65);
-      border: 1px solid rgba(59,130,246,0.12);
+      background: rgba(15,23,42,0.68);
+      border: 1px solid rgba(59,130,246,0.14);
       border-radius: 22px;
       padding: 24px;
       backdrop-filter: blur(14px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.18);
     }
 
     .meta-value {
@@ -294,34 +324,41 @@
       border-bottom: 1px solid rgba(96,165,250,0.35);
     }
 
-    .skills-grid {
+    .skills-grid,
+    .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 18px;
     }
 
     .skill-card {
-      background: rgba(15,23,42,0.72);
+      background: rgba(15,23,42,0.74);
       backdrop-filter: blur(16px);
-      border: 1px solid rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.14);
       padding: 40px;
       border-radius: 24px;
       transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
       min-height: 230px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.18);
     }
 
-    .skill-card:hover {
+    .skill-card:hover,
+    .project-card:hover,
+    .meta-item:hover,
+    .exp-meta:hover,
+    .clink:hover {
       transform: translateY(-6px);
-      border-color: rgba(96,165,250,0.42);
-      box-shadow: 0 0 30px rgba(59,130,246,0.18);
+      border-color: rgba(96,165,250,0.45);
+      box-shadow: 0 0 34px rgba(59,130,246,0.18);
     }
 
     .skill-icon {
-      font-size: 28px;
+      font-size: 30px;
       margin-bottom: 22px;
     }
 
-    .skill-title {
+    .skill-title,
+    .project-title {
       font-family: 'DM Mono', monospace;
       font-size: 13px;
       color: var(--white);
@@ -340,37 +377,44 @@
       font-family: 'DM Mono', monospace;
       font-size: 12px;
       color: #cbd5e1;
-      border: 1px solid rgba(96,165,250,0.18);
-      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(96,165,250,0.20);
+      background: rgba(59,130,246,0.09);
       padding: 6px 10px;
       border-radius: 999px;
     }
 
     .exp-body {
-      max-width: 830px;
-      background: rgba(15,23,42,0.52);
-      border: 1px solid rgba(59,130,246,0.12);
-      border-radius: 28px;
-      padding: 44px;
-      backdrop-filter: blur(16px);
+      max-width: 900px;
     }
 
     .exp-footer {
-      max-width: 830px;
+      max-width: 900px;
       margin-top: 18px;
       display: grid;
       grid-template-columns: repeat(2, minmax(220px, 1fr));
       gap: 18px;
     }
 
+    .project-card {
+      min-height: 250px;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+
+    .project-number {
+      font-family: 'DM Mono', monospace;
+      color: var(--accent-cyan);
+      font-size: 12px;
+      margin-bottom: 24px;
+    }
+
     .contact-wrap {
-      max-width: 760px;
+      max-width: 780px;
     }
 
     .contact-lead {
       font-size: clamp(22px, 3vw, 36px);
       line-height: 1.25;
-      color: var(--muted);
+      color: var(--soft);
       margin-bottom: 18px;
       letter-spacing: -0.03em;
     }
@@ -388,12 +432,6 @@
       transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
     }
 
-    .clink:hover {
-      transform: translateY(-5px);
-      border-color: rgba(96,165,250,0.45);
-      box-shadow: 0 0 30px rgba(59,130,246,0.18);
-    }
-
     .clink-value {
       display: block;
       margin-top: 8px;
@@ -409,15 +447,22 @@
       gap: 18px;
       color: var(--muted);
       font-size: 13px;
-      background: rgba(5,8,22,0.72);
+      background: rgba(5,8,22,0.76);
       backdrop-filter: blur(12px);
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(22px);
-      }
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      animation: reveal .8s ease forwards;
+    }
+
+    .delay-1 { animation-delay: .08s; }
+    .delay-2 { animation-delay: .16s; }
+    .delay-3 { animation-delay: .24s; }
+    .delay-4 { animation-delay: .32s; }
+
+    @keyframes reveal {
       to {
         opacity: 1;
         transform: translateY(0);
@@ -455,7 +500,8 @@
 
       .about-text,
       .exp-body,
-      .skill-card {
+      .skill-card,
+      .project-card {
         padding: 28px;
       }
 
@@ -474,18 +520,20 @@
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
   <section id="hero">
-    <div class="content">
+    <div class="content reveal">
       <div class="hero-label">Senior Sitecore Developer</div>
-      <h1>Tomasz Kłos</h1>
-        <br>
+      <h1>
+        Tomasz Kłos
         <span>Overview</span>
+      </h1>
       <p class="hero-sub">
-       Experienced Senior Sitecore Developer with nearly a decade of hands-on expertise delivering enterprise-grade digital experience platforms. Specialises in architecting, implementing, and optimising Sitecore solutions across complex, multi-site environments — from content management and personalisation to headless delivery and cloud migrations. Adept at bridging the gap between business objectives and technical execution, with a strong track record in regulated industries including financial services, healthcare, and retail.
+        Experienced Senior Sitecore Developer with nearly a decade of hands-on expertise delivering enterprise-grade digital experience platforms. Specialises in architecting, implementing, and optimising Sitecore solutions across complex, multi-site environments — from content management and personalisation to headless delivery and cloud migrations.
       </p>
 
       <div class="btn-row">
@@ -495,36 +543,36 @@
       </div>
     </div>
   </section>
+
   <section id="about">
     <div class="content">
       <div class="section-number">01 / ABOUT</div>
       <h2>Enterprise developer with a <span>technical mindset</span></h2>
       <div class="about-grid">
-        <div class="about-text">
+        <div class="about-text reveal">
           <p>
-            My strongest area is Sitecore architecture — designing solutions that are resilient, scalable, and upgrade-friendly from day one. 
+            My strongest area is Sitecore architecture — designing solutions that are resilient, scalable, and upgrade-friendly from day one.
             I have deep experience with Sitecore XM Cloud and SaaS migrations, helping organisations move away from on-premise deployments without losing editorial capability.
           </p>
           <p>
-           I also specialise in personalisation and analytics — implementing Sitecore CDP, 
-           Engage, and xDB-based segmentation strategies that drive measurable improvements in engagement and conversion.
+            I also specialise in personalisation and analytics — implementing Sitecore CDP, Engage, and xDB-based segmentation strategies that drive measurable improvements in engagement and conversion.
           </p>
         </div>
 
         <div class="about-meta">
-          <div class="meta-item">
+          <div class="meta-item reveal delay-1">
             <span class="meta-label">Location</span>
             <span class="meta-value">Poland · Remote</span>
           </div>
-          <div class="meta-item">
+          <div class="meta-item reveal delay-2">
             <span class="meta-label">LinkedIn</span>
             <span class="meta-value">
-              <a href="https://www.linkedin.com/in/tomasz-k%C5%82os-2580626/" target="_blank">
+              <a href="https://www.linkedin.com/in/tomasz-k%C5%82os-2580626/" target="_blank" rel="noopener">
                 linkedin.com/tomasz-kłos
               </a>
             </span>
           </div>
-          <div class="meta-item">
+          <div class="meta-item reveal delay-3">
             <span class="meta-label">Email</span>
             <span class="meta-value">
               <a href="mailto:tom.klos@gmail.com">tom.klos@gmail.com</a>
@@ -541,7 +589,7 @@
       <h2>Technical <span>skills</span>.</h2>
 
       <div class="skills-grid">
-        <div class="skill-card">
+        <div class="skill-card reveal delay-1">
           <div class="skill-icon">⚙️</div>
           <div class="skill-title">.NET Development</div>
           <div class="tags">
@@ -552,23 +600,21 @@
           </div>
         </div>
 
-        <div class="skill-card">
+        <div class="skill-card reveal delay-2">
           <div class="skill-icon">🧩</div>
           <div class="skill-title">Sitecore CMS</div>
           <div class="tags">
-            <span class="tag">CMS Development: Sitecore XP, Sitecore XM Cloud</span>
-            <span class="tag">Programming: C#, .NET Core, ASP.NET MVC</span>
-            <span class="tag">Database: SQL Server, MongoDB</span>
-            <span class="tag">Cloud Services: Azure, AWS</span>
-            <span class="tag">Integration: REST APIs, GraphQL</span>
-            <span class="tag">Security: Authentication, authorization protocols</span>
-            <span class="tag">Enterprise CMS</span>
-            <span class="tag">Digital Platforms</span>
+            <span class="tag">Sitecore XP</span>
+            <span class="tag">Sitecore XM Cloud</span>
+            <span class="tag">Sitecore CDP</span>
+            <span class="tag">Sitecore Engage</span>
+            <span class="tag">JSS</span>
+            <span class="tag">Headless CMS</span>
             <span class="tag">Content Architecture</span>
           </div>
         </div>
 
-        <div class="skill-card">
+        <div class="skill-card reveal delay-3">
           <div class="skill-icon">☁️</div>
           <div class="skill-title">Cloud & DevOps</div>
           <div class="tags">
@@ -576,14 +622,16 @@
             <span class="tag">Azure DevOps</span>
             <span class="tag">CI/CD</span>
             <span class="tag">App Insights</span>
+            <span class="tag">Cloud Migration</span>
           </div>
         </div>
 
-        <div class="skill-card">
+        <div class="skill-card reveal delay-4">
           <div class="skill-icon">🔗</div>
           <div class="skill-title">Architecture</div>
           <div class="tags">
             <span class="tag">REST APIs</span>
+            <span class="tag">GraphQL</span>
             <span class="tag">Microservices</span>
             <span class="tag">T-SQL</span>
             <span class="tag">Clean Code</span>
@@ -598,14 +646,13 @@
       <div class="section-number">03 / EXPERIENCE</div>
       <h2>Scalable systems. <span>Reliable delivery.</span></h2>
 
-      <div class="exp-body">
+      <div class="exp-body reveal">
         <p>
-          Delivered end-to-end Sitecore implementations for enterprise clients across financial services, healthcare, and retail — including multi-site, 
-          multi-language platforms serving millions of monthly visitors. 
+          Delivered end-to-end Sitecore implementations for enterprise clients across financial services, healthcare, and retail — including multi-site, multi-language platforms serving millions of monthly visitors.
           Led architecture design, development sprints, and go-live support on programmes ranging from greenfield builds to complex re-platforms from competing CMS solutions.
         </p>
         <p>
-          Led multiple migrations from on-premise Sitecore XP to Sitecore XM Cloud, including content migration strategies, rendering host architecture with Next.js/JSS, and CI/CD pipeline setup on Azure DevOps. 
+          Led multiple migrations from on-premise Sitecore XP to Sitecore XM Cloud, including content migration strategies, rendering host architecture with Next.js/JSS, and CI/CD pipeline setup on Azure DevOps.
           Experienced in composable DXP architecture, integrating Sitecore with third-party services including Salesforce, commercetools, and Coveo Search.
         </p>
         <p>
@@ -613,20 +660,18 @@
           Delivered audience segmentation, A/B testing frameworks, and goal-based tracking integrations that resulted in measurable lifts in user engagement and lead conversion rates for clients in regulated industries.
         </p>
         <p>
-          Acted as technical lead on delivery teams of 4–10 developers, conducting code reviews, defining coding standards, and mentoring junior and mid-level developers in Sitecore best practices. 
+          Acted as technical lead on delivery teams of 4–10 developers, conducting code reviews, defining coding standards, and mentoring junior and mid-level developers in Sitecore best practices.
           Contributed to pre-sales technical scoping, solution design documentation, and client-facing architecture workshops.
         </p>
-        
-        
       </div>
 
       <div class="exp-footer">
-        <div class="exp-meta">
+        <div class="exp-meta reveal delay-1">
           <span class="meta-label">Core stack</span>
           <span class="meta-value">Sitecore · C# · .NET · APIs</span>
         </div>
 
-        <div class="exp-meta">
+        <div class="exp-meta reveal delay-2">
           <span class="meta-label">Focus</span>
           <span class="meta-value">Enterprise platforms · backend systems</span>
         </div>
@@ -634,27 +679,74 @@
     </div>
   </section>
 
+  <section id="projects">
+    <div class="content">
+      <div class="section-number">04 / PROJECTS</div>
+      <h2>Selected <span>projects</span>.</h2>
+
+      <div class="projects-grid">
+        <div class="project-card reveal delay-1">
+          <div class="project-number">PROJECT / 01</div>
+          <div class="project-title">Banking Platform</div>
+          <p>
+            Enterprise Sitecore XM Cloud implementation for a financial services environment, focused on scalability, security, editorial workflows and integration-ready architecture.
+          </p>
+          <div class="tags">
+            <span class="tag">Sitecore XM Cloud</span>
+            <span class="tag">Azure</span>
+            <span class="tag">CI/CD</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal delay-2">
+          <div class="project-number">PROJECT / 02</div>
+          <div class="project-title">Healthcare Portal</div>
+          <p>
+            Multi-language content platform with personalisation, analytics and regulated-industry delivery standards, designed for reliability and maintainability.
+          </p>
+          <div class="tags">
+            <span class="tag">Sitecore XP</span>
+            <span class="tag">xDB</span>
+            <span class="tag">Personalisation</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal delay-3">
+          <div class="project-number">PROJECT / 03</div>
+          <div class="project-title">Retail Commerce</div>
+          <p>
+            Headless architecture combining Sitecore, Next.js and search integrations to support modern digital commerce and high-performance customer experiences.
+          </p>
+          <div class="tags">
+            <span class="tag">Headless</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Coveo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="contact">
     <div class="content contact-wrap">
-      <div class="section-number">04 / CONTACT</div>
+      <div class="section-number">05 / CONTACT</div>
       <h2>Get in touch<span>.</span></h2>
 
       <p class="contact-lead">
-       You are just starting a project with Sitecore CMS</em>?
+        Are you starting, scaling or rescuing a <em>Sitecore CMS</em> project?
       </p>
 
       <p class="contact-sub">
-        Available for senior contract roles. 
-        Whether you need someone to lead a Sitecore implementation from the ground up, rescue a stalled project, or drive a cloud migration — feel free to reach out.
+        Available for senior contract roles. Whether you need someone to lead a Sitecore implementation from the ground up, rescue a stalled project, or drive a cloud migration — feel free to reach out.
       </p>
 
       <div class="contact-links">
-        <a href="mailto:tom.klos@gmail.com" class="clink">
+        <a href="mailto:tom.klos@gmail.com" class="clink reveal delay-1">
           <span class="clink-label">Email</span>
           <span class="clink-value">tom.klos@gmail.com</span>
         </a>
 
-        <a href="https://www.linkedin.com/in/tomasz-k%C5%82os-2580626/" target="_blank" class="clink">
+        <a href="https://www.linkedin.com/in/tomasz-k%C5%82os-2580626/" target="_blank" rel="noopener" class="clink reveal delay-2">
           <span class="clink-label">LinkedIn</span>
           <span class="clink-value">linkedin.com/in/tomasz-kłos</span>
         </a>
@@ -663,8 +755,14 @@
   </section>
 
   <footer>
-    <span>Tomasz Kłos · Senior Sitecore Developer</span>
-    <span>© 2026</span>
+    <span>© 2026 Tomasz Kłos · Senior Sitecore Developer</span>
   </footer>
+
+  <script>
+    document.addEventListener('mousemove', function (event) {
+      document.body.style.setProperty('--x', event.clientX + 'px');
+      document.body.style.setProperty('--y', event.clientY + 'px');
+    });
+  </script>
 </body>
 </html>
